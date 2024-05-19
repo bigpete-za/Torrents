@@ -63,7 +63,7 @@ function get-torrentArchives {
                 Write-Output "Would run: $Command"
             } else {
                 # Otherwise, execute the command
-                Invoke-Expression $Command
+                Invoke-Command -ScriptBlock $Command
             }
         } 
         # If there are any .zip files in the source path
@@ -76,7 +76,7 @@ function get-torrentArchives {
                 Write-Output "Would run: $Command"
             } else {
                 # Otherwise, execute the command
-                Invoke-Expression $Command
+                Invoke-Command -ScriptBlock $Command
             }
         }
     }
