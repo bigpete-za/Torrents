@@ -1,6 +1,6 @@
 <#
 get-torrentarchives.psm1
-Version: 0.0.1
+Version: 0.0.2
 Author: Peter Soule
 Date: 19-05-2024
 Description: Script to auto extract archives from torrents.
