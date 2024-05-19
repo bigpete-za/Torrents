@@ -82,5 +82,5 @@ function get-torrentArchives {
     }
 }
 
-# Call the function with the arguments provided when the script was called
+# Export the get-torrentArchives function from the module
 Export-ModuleMember -Function get-torrentArchives
