@@ -6,7 +6,7 @@ Date: 19-05-2024
 Description: Script to auto extract archives from torrents.
 
 Examples:
-Example of Command: `G:\Torrents\get-torrentArchives.ps1 -SourcePath "G:\Torrents\_Complete\Books\Exam_Guides\torrentpath" -ExtractionDestination "G:\Torrents\_Extracted\torrentname" -DryRun`
+Example of Command: `get-torrentArchives.ps1 -SourcePath "G:\Torrents\_Complete\Books\Exam_Guides\torrentpath" -ExtractionDestination "G:\Torrents\_Extracted\torrentname" -DryRun`
 
 #>
 
