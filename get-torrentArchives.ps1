@@ -31,7 +31,7 @@ function get-torrentArchives {
     # Start a try block to catch any errors that occur during the execution of the script
     try {
         # Define the path of the log file
-        $LogPath = 'C:\Users\pete\OneDrive\Download\.torrents\Extract\extract.log'
+        $LogPath = 'G:\Torrents\_Extracted\Logs\extract.log'
 
         # Get the current date and time
         $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
