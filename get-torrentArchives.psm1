@@ -3,8 +3,7 @@ get-torrentarchives.psm1
 Version: 0.0.2
 Author: Peter Soule
 Date: 19-05-2024
-Example: `get-torrentArchives.ps1 -SourcePath "G:\Torrents\_Complete\Books\Exam_Guides\torrentpath" -ExtractionDestination "G:\Torrents\_Extracted\torrentname" -DryRun`
-
+Source: https://github.com/bigpete-za/torrent-mgr/
 #>
 
 # Define a function named get-torrentArchives
