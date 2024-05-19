@@ -25,7 +25,7 @@ function get-torrentArchives {
 
         # DryRun is an optional switch. Defaults to true; the function will only log the actions it would take without actually performing them.
         [Parameter(Mandatory=$false)]
-        [switch]$DryRun = $true
+        [switch]$DryRun = $false
     )
 
     # Start a try block to catch any errors that occur during the execution of the script

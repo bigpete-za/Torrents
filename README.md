@@ -1,49 +1,61 @@
-# Torrents
-Scripts for managing torrents.
-# Torrents
+# Torrent-MGR
+Scripts for managing torrents on Windows.
 
+## Description
 This repository contains scripts for managing torrents, extracting archives etc.
 
-## get-torrentarchives.ps1
+# Scripts
+## get-torrentarchives.psm1
 
-This script allows you to retrieve torrent archives from a specified source.
+This module allows you to retrieve torrent archives from a specified source.
 
 ### Prerequisites
 
-Before running this script, make sure you have the following prerequisites installed:
+Before using this module, make sure you have the following prerequisites installed:
 
 - PowerShell version 5.1 or later
+- 7Zip installed in Program Files
 
 ### Usage
 
-To use the `get-torrentarchives.ps1` script, follow these steps:
+To use the `get-torrentarchives.psm1` module, follow these steps:
 
 1. Clone this repository to your local machine.
 2. Open a PowerShell terminal.
-3. Navigate to the directory where the script is located.
-4. Run the script using the following command:
+3. Navigate to the directory where the module is located.
+4. Import the module using the following command:
 
     ```powershell
-    ./get-torrentarchives.ps1 -Source <source> -Destination <destination>
+    Import-Module ./get-torrentarchives.psm1
+    ```
+5. Append the module to your Posh profile.
+    ````powershell
+
+    Add-Content -Path $PROFILE -Value 'Import-Module get-torrentArchives'
+    ````
+6. Run the function using the following command:
+
+    ```powershell
+    Get-TorrentArchives -Source <source> -Destination <destination>
     ```
 
     Replace `<source>` with the URL or path to the torrent source, and `<destination>` with the directory where you want to save the torrent archives.
-5. Note, the default flag is dry run for now, this is an alpha release.
+
+    This can be later called from a torrent client, with the following flags:
+    ````
+    get-torrentarchives -SourcePath "%F" -ExtractionDestination "%R" -dryrun
+    ````
+    
+7. Note, the default flag is dry run for now, this is an alpha release.
 
 ### Examples
 
-Here are some examples of how to use the script:
-
-- To retrieve torrent archives from a URL:
-
-  ```powershell
-  ./get-torrentarchives.ps1 -Source "https://example.com/torrents" -Destination "C:\TorrentArchives"
-  ```
+Here are some examples of how to use the function:
 
 - To retrieve torrent archives from a local directory:
 
   ```powershell
-  ./get-torrentarchives.ps1 -Source "C:\Torrents" -Destination "C:\TorrentArchives"
+  ./get-torrentarchives -Source "C:\Torrents" -Destination "C:\TorrentArchives"
   ```
 
 ### License
