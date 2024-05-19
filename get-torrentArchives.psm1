@@ -42,12 +42,17 @@ function get-torrentArchives {
         [Parameter(Mandatory=$false)]
         [switch]$DryRun = $false
     )
+    # Get absolute path of source
+    $SourcePath = Resolve-Path $SourcePath
+    $archives = Get-ChildItem -Path $SourcePath -recurse -Filter "*.rar", "*.zip" -File
+    $extension = [IO.Path]::GetExtension($archives)
+    # Get absolute path of dest
+    $ExtractionDestination = Resolve-Path $ExtractionDestination
 
     # Start a try block to catch any errors that occur during the execution of the script
     try {
         # Define the path of the log file
         $LogPath = Join-Path -Path $ExtractionDestination -ChildPath 'extract.log'
-
         # Get the current date and time
         $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
@@ -57,31 +62,41 @@ function get-torrentArchives {
         # Add the log message to the log file
         Add-Content -Path $LogPath -Value $LogMessage
 
-        # If there are any .rar files in the source path
-        if ((Get-ChildItem -Path $SourcePath -recurse -Filter "*.rar" -File)) {
-            # Define a command to extract the .rar files
-            $Command = { & 'C:\Program Files\7-Zip\7z.exe' x "`"$SourcePath\*.rar`"" -aoa -o"`"$SourcePath\$N`"" }
+        # If the extension is .rar
+    if ($extension -eq ".rar") {
+        # Define a command to extract the .rar files
+        $Command = { & 'C:\Program Files\7-Zip\7z.exe' x "`"$archives`"" -aoa -o"`"$ExtractionDestination`"" }
 
-            # If DryRun is true, log the command without executing it
-            if ($DryRun) {
-                Write-Output "Would run: $Command"
-            } else {
-                # Otherwise, execute the command
-                Invoke-Command -ScriptBlock $Command
-            }
-        } 
-        # If there are any .zip files in the source path
-        elseif ((Get-ChildItem -Path $SourcePath -recurse -Filter "*.zip" -File)){
-            # Define a command to extract the .zip files
-            $Command = { & 'C:\Program Files\7-Zip\7z.exe' x "`"$SourcePath\*.zip`"" -aoa -o"`"$SourcePath\$N`"" }
+        # If DryRun is true, log the command without executing it
+        if ($DryRun) {
+            Write-Output "Would run: $Command"
+        } else {
+            # Otherwise, execute the command
+            Invoke-Command -ScriptBlock $Command
+        }
+    } 
+    # If the extension is .zip
+    elseif ($extension -eq ".zip"){
+        # Define a command to extract the .zip files
+        $Command = { & 'C:\Program Files\7-Zip\7z.exe' x "`"$archives`"" -aoa -o"`"$ExtractionDestination`"" }
 
-            # If DryRun is true, log the command without executing it
-            if ($DryRun) {
-                Write-Output "Would run: $Command"
-            } else {
-                # Otherwise, execute the command
-                Invoke-Command -ScriptBlock $Command
-            }
+        # If DryRun is true, log the command without executing it
+        if ($DryRun) {
+            Write-Output "Would run: $Command"
+        } else {
+            # Otherwise, execute the command
+            Invoke-Command -ScriptBlock $Command
+        }
+    }
+    else {
+            # If the extension is not .rar or .zip, log an error message
+            $ErrorMessage = "Unsupported file extension: $extension"
+
+            # Log the error message for debugging
+            Write-Debug $ErrorMessage
+
+            # Add the error message to the log file
+            Add-Content -Path $LogPath -Value $ErrorMessage
         }
     }
     # If any errors occur during the execution of the script
