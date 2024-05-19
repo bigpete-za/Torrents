@@ -3,16 +3,28 @@ get-torrentarchives.psm1
 Version: 0.0.2
 Author: Peter Soule
 Date: 19-05-2024
-Description: Script to auto extract archives from torrents.
-
-Examples:
-Example of Command: `get-torrentArchives.ps1 -SourcePath "G:\Torrents\_Complete\Books\Exam_Guides\torrentpath" -ExtractionDestination "G:\Torrents\_Extracted\torrentname" -DryRun`
+Example: `get-torrentArchives.ps1 -SourcePath "G:\Torrents\_Complete\Books\Exam_Guides\torrentpath" -ExtractionDestination "G:\Torrents\_Extracted\torrentname" -DryRun`
 
 #>
 
 # Define a function named get-torrentArchives
 function get-torrentArchives {
-    # Define parameters for the function
+    <#
+    .SYNOPSIS
+    Script to auto extract archives from torrents.
+
+    .DESCRIPTION
+    This script extracts archives from torrents using 7-Zip. 
+    It takes a source path containing .rar or .zip files, extracts them to a specified destination, and logs the actions taken.
+
+    .PARAMETER SourcePath
+    SourcePath: The path to the directory containing the .rar or .zip files to extract.
+    .PARAMETER ExtractionDestination
+    ExtractionDestination: The path to the directory where the extracted files will be saved.
+    .PARAMETER DryRun
+    DryRun: A switch parameter that, when present, will cause the script to log the actions it would take without actually performing them.
+    #>
+    [CmdletBinding()]
     param (
         # SourcePath is a mandatory parameter. It must be a valid directory path.
         [Parameter(Mandatory=$true)]
