@@ -33,7 +33,6 @@ function get-torrentArchives {
     # Start a try block to catch any errors that occur during the execution of the script
     try {
         # Define the path of the log file
-        # Define the path of the log file
         $LogPath = Join-Path -Path $ExtractionDestination -ChildPath 'extract.log'
 
         # Get the current date and time
