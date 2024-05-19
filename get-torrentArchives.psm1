@@ -1,5 +1,5 @@
 <#
-get-torrentarchives.ps1
+get-torrentarchives.psm1
 Version: 0.0.1
 Author: Peter Soule
 Date: 19-05-2024
@@ -83,4 +83,4 @@ function get-torrentArchives {
 }
 
 # Call the function with the arguments provided when the script was called
-get-torrentArchives -SourcePath $args[0] -ExtractionDestination $args[1] -DryRun $args[2]
+Export-ModuleMember -Function get-torrentArchives
