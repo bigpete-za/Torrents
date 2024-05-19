@@ -56,7 +56,7 @@ function get-torrentArchives {
         # If there are any .rar files in the source path
         if ((Get-ChildItem -Path $SourcePath -recurse -Filter "*.rar" -File)) {
             # Define a command to extract the .rar files
-            $Command = "C:\Program Files\7-Zip\7z.exe x `"$SourcePath\*.rar`" -aoa -o`"$SourcePath\$N`""
+            $Command = { & 'C:\Program Files\7-Zip\7z.exe' x "`"$SourcePath\*.rar`"" -aoa -o"`"$SourcePath\$N`"" }
 
             # If DryRun is true, log the command without executing it
             if ($DryRun) {
@@ -69,7 +69,7 @@ function get-torrentArchives {
         # If there are any .zip files in the source path
         elseif ((Get-ChildItem -Path $SourcePath -recurse -Filter "*.zip" -File)){
             # Define a command to extract the .zip files
-            $Command = "C:\Program Files\7-Zip\7z.exe x `"$SourcePath\*.zip`" -aoa -o`"$SourcePath\$N`""
+            $Command = { & 'C:\Program Files\7-Zip\7z.exe' x "`"$SourcePath\*.zip`"" -aoa -o"`"$SourcePath\$N`"" }
 
             # If DryRun is true, log the command without executing it
             if ($DryRun) {
