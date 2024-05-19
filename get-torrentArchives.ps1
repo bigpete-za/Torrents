@@ -1,10 +1,9 @@
-# get-torrentarchives.ps1
-# Version: 0.0.1
 <#
+get-torrentarchives.ps1
+Version: 0.0.1
 Author: Peter Soule
 Date: 19-05-2024
 Description: Script to auto extract archives from torrents.
-
 
 Examples:
 Example of Command: `G:\Torrents\get-torrentArchives.ps1 -SourcePath "G:\Torrents\_Complete\Books\Exam_Guides\torrentpath" -ExtractionDestination "G:\Torrents\_Extracted\torrentname" -DryRun`
@@ -34,7 +33,8 @@ function get-torrentArchives {
     # Start a try block to catch any errors that occur during the execution of the script
     try {
         # Define the path of the log file
-        $LogPath = 'G:\Torrents\_Extracted\Logs\extract.log'
+        # Define the path of the log file
+        $LogPath = Join-Path -Path $ExtractionDestination -ChildPath 'extract.log'
 
         # Get the current date and time
         $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
