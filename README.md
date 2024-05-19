@@ -14,7 +14,7 @@ This module allows you to retrieve torrent archives from a specified source.
 Before using this module, make sure you have the following prerequisites installed:
 
 - PowerShell version 5.1 or later
-- 7Zip installed in Program Files
+- 7-Zip installed in the default location: C:\Program Files\7-Zip\7z.exe and added to path with like "set PATH=%PATH%;C:\Program Files\7-Zip\""
 
 ### Usage
 
