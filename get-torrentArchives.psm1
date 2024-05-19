@@ -23,7 +23,7 @@ function get-torrentArchives {
         [Parameter(Mandatory=$true)]
         [string]$ExtractionDestination,
 
-        # DryRun is an optional switch. Defaults to true; the function will only log the actions it would take without actually performing them.
+        # DryRun is an optional switch. Defaults to false; the function will only log the actions it would take without actually performing them.
         [Parameter(Mandatory=$false)]
         [switch]$DryRun = $false
     )
